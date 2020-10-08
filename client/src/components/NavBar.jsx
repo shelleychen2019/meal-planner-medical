@@ -27,11 +27,6 @@ class NavBar extends Component {
                 <Nav>
                     <Logo />
                     <Links />
-                    <Button>
-                            <Link to="/meals/list" className="nav-link">
-                                All Recipes
-                            </Link>
-                        </Button>
                 </Nav>
                 
             </Container>
