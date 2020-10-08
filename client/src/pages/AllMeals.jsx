@@ -53,12 +53,12 @@ class DeleteMeal extends Component {
 }
 
 //component for filtering by cuisine
-class MealsList extends Component {
+class AllMeals extends Component {
     constructor(props) {
         super(props)
         this.state = {
             meals: [],
-            cuisine: this.props.match.params.cuisine, //right side is in the router, left side is local var name
+            cuisine: [], //right side is in the router, left side is local var name
             columns: [],
             isLoading: false,
         }
@@ -69,13 +69,16 @@ class MealsList extends Component {
 //create a helper function
 //don't need cuisine in state
 //edge case for isLoading, setState is loading should be true and then false after fetch
-//if setState doesn't happen instantly, getMealsByDiet might return first before setState occurs, isLoading gets set to false
+//if setState doesn't happen instantly
+// getMealsByDiet might return first before setState occurs, isLoading gets set to false
     componentDidMount = async () => {
-        this.setState({ isLoading: true })
+			//happens before browser updates the screen
+				this.setState({ isLoading: true })
+				//You may call setState() immediately in componentDidMount(). It will trigger an extra rendering, but it will happen before the browser updates the screen. This guarantees that even though the render() will be called twice in this case, the user won’t see the intermediate state. Use this pattern with caution because it often causes performance issues. In most cases, you should be able to assign the initial state in the constructor() instead. It can, however, be necessary for cases like modals and tooltips when you need to measure a DOM node before rendering something that depends on its size or position.
         const { cuisine } = this.state //extraction operator, extracts state fields
         //add an option of just get meals by diet, which is already connected through the api to the backend
-        // await api.getAllMeals().then(meals => {
-        await api.getMealsByDiet(cuisine).then(meals => {
+        await api.getAllMeals().then(meals => {
+        // await api.getMealsByDiet(cuisine).then(meals => {
             this.setState({
                 meals: meals.data.data,
                 isLoading: false,
@@ -84,21 +87,19 @@ class MealsList extends Component {
         })
     }
 
-    componentDidUpdate = async (prevProps) => {
-        // Typical usage (don't forget to compare props):
-        // pcuisine doesn't need to be part of the state because it's from the router
-        if (this.props.match.params.cuisine
-            !== prevProps.match.params.cuisine) {
-            //   this.fetchData(this.props.userID);
-            await api.getMealsByDiet(this.props.match.params.cuisine)
-                .then(meals => {
-                    this.setState({
-                        meals: meals.data.data,
-                        isLoading: false,
-                    })
-                })
-        }
-    }
+    // componentDidUpdate = async (prevProps) => {
+    //     if (this.props.match.params.cuisine
+    //         !== prevProps.match.params.cuisine) {
+    //         //   this.fetchData(this.props.userID);
+    //         await api.getMealsByDiet(this.props.match.params.cuisine)
+    //             .then(meals => {
+    //                 this.setState({
+    //                     meals: meals.data.data,
+    //                     isLoading: false,
+    //                 })
+    //             })
+    //     }
+    // }
 
         render() {
             const { meals, isLoading } = this.state
@@ -174,4 +175,4 @@ class MealsList extends Component {
         }
     }
 
-    export default MealsList
+    export default AllMeals

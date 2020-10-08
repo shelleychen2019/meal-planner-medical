@@ -124,7 +124,7 @@ class MoviesUpdate extends Component {
                 />
 
                 <Button onClick={this.handleUpdateMovie}>Update Movie</Button>
-                <CancelButton href={'/movies/list'}>Cancel</CancelButton>
+                <CancelButton href={'/meal/list'}>Cancel</CancelButton>
             </Wrapper>
         )
     }

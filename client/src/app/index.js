@@ -5,9 +5,10 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { NavBar } from '../components';
-import { MealsList, MoviesInsert, MoviesUpdate } from '../pages'
+import { AllMeals, MealsList, MoviesInsert, MoviesUpdate } from '../pages'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { getAllMeals } from '../api';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
       <Switch>
         {/* Switch will render only 1 route, meals/list/:cuisine */}
         <Route path="/" exact component={NavBar} />
-        <Route path="/meals/list" exact component={MealsList} />
+        <Route path="/meals/list" exact component={AllMeals} />
         <Route path="/meals/list/:cuisine" exact component={MealsList} />
         <Route path="/meals/create" exact component={MoviesInsert} />
         <Route path="/meals/update/:id" exact component={MoviesUpdate} />

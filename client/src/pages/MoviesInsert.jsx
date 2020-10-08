@@ -69,7 +69,7 @@ class MoviesInsert extends Component {
         const arrayTime = time.split('/')
         const payload = { name, rating, time: arrayTime }
 
-        await api.insertMovie(payload).then(res => {
+        await api.insertMeal(payload).then(res => {
             window.alert(`Movie inserted successfully`)
             this.setState({
                 name: '',
@@ -112,7 +112,7 @@ class MoviesInsert extends Component {
                 />
 
                 <Button onClick={this.handleIncludeMovie}>Add Movie</Button>
-                <CancelButton href={'/movies/list'}>Cancel</CancelButton>
+                <CancelButton href={'/'}>Cancel</CancelButton>
             </Wrapper>
         )
     }
