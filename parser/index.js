@@ -38,20 +38,19 @@
 
 const axios = require('axios');
 const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
-console.log(alphabet)
 const url_array = alphabet.map(letter =>
 `https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`
 )
-
-    (async () => {
-        try {
-            const allResponses = await axios.all(
-                url_array.map(url => axios.get(url)) // array of 26 urls
-            );
-            const meal_array = allResponses.map(
-                response => response.data.meals) //meals is a key in the data js object, value is the array of meals
-                console.log(meal_array);
-            } catch (error) {
-            console.log(error.response.body);
-        }
-    })();
+console.log(url_array)
+(async () => {
+//         try {
+//             const allResponses = await axios.all(
+//                 url_array.map(url => axios.get(url)) // array of 26 urls
+//             );
+//             const meal_array = allResponses.map(
+//                 response => response.data.meals) //meals is a key in the data js object, value is the array of meals
+//                 console.log(meal_array);
+//             } catch (error) {
+//             console.log(error.response.body);
+//         }
+})(); //whole syntax () lets you call async fxn
