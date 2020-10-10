@@ -37,12 +37,50 @@
 // });
 
 const axios = require('axios');
+
 const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
 const url_array = alphabet.map(letter =>
-`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`
+    `https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`
 )
-console.log(url_array)
+// console.log(url_array)
+
+const run = async () => {
+    try {
+        const allResponses = await axios.all(
+            url_array.map(url => axios.get(url)) // array of 26 urls
+        );
+        const meal_array = allResponses.map(
+            response => response.data.meals) //meals is a key in the data js object, value is the array of meals
+        let merged_meal_array = meal_array.flat()
+        // console.log(merged_meal_array.length)
+        let non_null_array = merged_meal_array.filter(meal => meal != null);
+        // console.log(non_null_array.length) 
+        // console.log(merged_meal_array)
+        let schema_array = non_null_array.map(meal => {
+            let obj = {}
+            obj.name = meal.strMeal;
+            obj.cuisine = meal.strCategory;
+            obj.main_ingredient = meal.strArea;
+            obj.instructions = meal.strInstructions.replace(/\r\n/g, "<br />");
+            return obj
+        }
+        )
+
+        console.log('convert recipe to my schema', schema_array)
+        for (let i = 0; i < schema_array.length; i++){
+            const resp = await axios.post('http://localhost:3000/api/meal', schema_array[i]);
+        }
+        //     let output = JSON.stringify(schema_array)
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 (async () => {
+    await run();
+})(); //whole syntax () lets you call async fxn
+
+                         // (async () => {
 //         try {
 //             const allResponses = await axios.all(
 //                 url_array.map(url => axios.get(url)) // array of 26 urls
@@ -53,4 +91,4 @@ console.log(url_array)
 //             } catch (error) {
 //             console.log(error.response.body);
 //         }
-})(); //whole syntax () lets you call async fxn
+// })(); //whole syntax () lets you call async fxn
