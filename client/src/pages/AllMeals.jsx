@@ -165,12 +165,15 @@ class AllMeals extends Component {
         }
 
         return (
-            <React.Fragment>
-                <div className="row">
-                    {recipes}
+            // <React.Fragment>
+                <div class="card-deck">
+                    {/* <div class="row">
+                        <div class = "col-sm"> */}
+        
+                        {recipes}
                 </div>
 
-            </React.Fragment>
+            // </React.Fragment>
 
             // <Wrapper>
 
