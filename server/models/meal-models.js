@@ -21,6 +21,7 @@ const Meal = new Schema(
     //   }, 
     // ...
     // ],
+    video: [String], 
     instructions: [String]
 }
 

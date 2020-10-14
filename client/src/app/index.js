@@ -13,10 +13,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <Router>
-      {/* <NavBar /> */}
+      <NavBar />
       <Switch>
         {/* Switch will render only 1 route, meals/list/:cuisine */}
-        <Route path="/" exact component={NavBar} />
+        {/* <Route path="/" exact component={NavBar} /> */}
         <Route path="/meals/list" exact component={AllMeals} />
         <Route path="/meals/list/:cuisine" exact component={MealsList} />
         <Route path="/meals/create" exact component={MoviesInsert} />

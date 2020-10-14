@@ -63,6 +63,7 @@ const run = async () => {
             obj.main_ingredient = meal.strArea;
             obj.instructions = meal.strInstructions.replace(/\r\n/g, "<br />");
             obj.picture = meal.strMealThumb;
+            obj.video = meal.strYoutube;
             return obj
         }
         )
