@@ -29,41 +29,40 @@ class Links extends Component {
                     lovely meals
                 </Link>
                 <Collapse>
-                <List>
+                    <List>
 
-                    <Item>
-                        {/* Have button hyperlink to "/meals/list/:anycuisine" */}
-                        <Button>
-                            <Link to="/meals/list" className="nav-link">
-                                All Recipes
-                            </Link>
-                        </Button>
-                    </Item>
-                    <Item>
-                        {/* maps are sexy */}
-                        {/* check how to hyperlink to something with parameter */}
-                        <Button>
-<Link to="/meals/list/vegan" className="nav-link">
-                            Vegan
+                        <Item>
+                            {/* Have button hyperlink to "/meals/list/:anycuisine" */}
+                            <Button>
+                                <Link to="/meals/list" className="nav-link">
+                                    All Recipes
                             </Link>
                             </Button>
-                    </Item>
-                    <Item>
-                       
-                        {/* check how to hyperlink to something with parameter */}
-                         <Button>
-                             <Link to="/meals/list/pollotarian" className="nav-link">
-                            Delish Chicken
+                        </Item>
+                        <Item>
+                            {/* maps are sexy */}
+                            <Button>
+                                <Link to="/meals/list/vegan" className="nav-link">
+                                    Vegan
                             </Link>
                             </Button>
-                    </Item>
-                    <Item>
-                        <Link to="/meals/create" className="nav-link">
-                            Create Recipe
+                        </Item>
+                        <Item>
+
+                            {/* check how to hyperlink to something with parameter */}
+                            <Button>
+                                <Link to="/meals/list/pollotarian" className="nav-link">
+                                    Delish Chicken
                             </Link>
-                            
-                    </Item>
-                </List>
+                            </Button>
+                        </Item>
+                        <Item>
+                            <Link to="/meals/create" className="nav-link">
+                                Create Recipe
+                            </Link>
+
+                        </Item>
+                    </List>
                 </Collapse>
             </React.Fragment>
         )

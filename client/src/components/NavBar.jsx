@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import Logo from './Logo'
 import Links from './Links'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom' need this if actual link is linked
 
 const Container = styled.div.attrs({
     className: 'container',
@@ -14,12 +14,6 @@ const Nav = styled.nav.attrs({
 })`
     margin-bottom: 20 px;
 `
-const Button = styled.button.attrs({
-    className: `btn btn-primary`,
-})`
-    margin: 15px 15px 15px 5px;
-`
-
 class NavBar extends Component {
     render() {
         return (

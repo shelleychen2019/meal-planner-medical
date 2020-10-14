@@ -2,5 +2,6 @@ import AllMeals from './AllMeals'
 import MealsList from './MealsList'
 import MoviesInsert from './MoviesInsert'
 import MoviesUpdate from './MoviesUpdate'
+import RecipeCard from './RecipeCard'
 
-export {AllMeals, MealsList, MoviesInsert, MoviesUpdate }
+export {RecipeCard, AllMeals, MealsList, MoviesInsert, MoviesUpdate }

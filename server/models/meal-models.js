@@ -5,7 +5,7 @@ const Meal = new Schema(
     {
     name: {type: String},
     // "sides": string,
-    // "photo": string,
+    picture: {type: String},
     main_ingredient: {type: String},
     // main_ing: {type: String},
     cuisine: {type: String},
