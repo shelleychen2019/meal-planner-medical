@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react'
 import ReactTable from 'react-table'
-import ReactPlayer from 'react-player'
 import api from '../api'
 import styled from 'styled-components'
 

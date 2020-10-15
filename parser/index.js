@@ -59,7 +59,7 @@ const run = async () => {
         let schema_array = non_null_array.map(meal => {
             let obj = {}
             obj.name = meal.strMeal;
-            obj.cuisine = meal.strCategory;
+            obj.cuisine = meal.strCategory.toLowerCase();
             obj.main_ingredient = meal.strArea;
             obj.instructions = meal.strInstructions.replace(/\r\n/g, "<br />");
             obj.picture = meal.strMealThumb;

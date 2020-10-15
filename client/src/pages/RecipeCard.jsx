@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
 import logo from '../logo.svg'; // with import
+import ReactPlayer from 'react-player'
 
 class RecipeCard extends Component {
         // after changing the onClick property
@@ -9,7 +10,6 @@ class RecipeCard extends Component {
         // console.log(this.props)
         return (
             // <div key = {this.props.id}></div>?
-            
             <div className = ".container" onClick={this.props.onClick} >
                 <div className = "ml-5 mt-5 mb-5"> 
                 <div className="card" style={{ width: 18 + 'rem' }}>
@@ -27,9 +27,12 @@ class RecipeCard extends Component {
                     <a href="#" className="card-link">Ingredients</a> */}
                     <a href="#" className="btn btn-primary">Add to Menu</a>
                 </div>
+                <ReactPlayer url= {this.props.video} playing />
+
             </div>
             </div>
             </div>
+            
         )
     }
 };

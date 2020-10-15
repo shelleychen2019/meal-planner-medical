@@ -42,8 +42,8 @@ class Links extends Component {
                         <Item>
                             {/* maps are sexy */}
                             <Button>
-                                <Link to="/meals/list/vegan" className="nav-link">
-                                    Vegan
+                                <Link to="/meals/list/vegetarian" className="nav-link">
+                                    Vegetarian
                             </Link>
                             </Button>
                         </Item>
@@ -51,8 +51,8 @@ class Links extends Component {
 
                             {/* check how to hyperlink to something with parameter */}
                             <Button>
-                                <Link to="/meals/list/pollotarian" className="nav-link">
-                                    Delish Chicken
+                                <Link to="/meals/list/chicken" className="nav-link">
+                                    Pollotarian
                             </Link>
                             </Button>
                         </Item>
