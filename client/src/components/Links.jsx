@@ -57,6 +57,11 @@ class Links extends Component {
                             </Button>
                         </Item>
                         <Item>
+                            <Link to="/meals/list/favorites" className="nav-link">
+                                Favorites
+                            </Link>
+                        </Item>
+                        <Item>
                             <Link to="/meals/create" className="nav-link">
                                 Create Recipe
                             </Link>

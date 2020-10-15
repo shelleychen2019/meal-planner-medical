@@ -110,7 +110,7 @@ class MealsList extends Component {
                     name={recipe.name}
                     picture={recipe.picture}
                     cuisine={recipe.cuisine}
-                    video = {recipe.video}
+                    video={recipe.video}
                     instructions={recipe.instructions}
                     main_ingredient={recipe.main_ingredient}
                 />
@@ -130,12 +130,7 @@ class MealsList extends Component {
             return (
                 <RecipeCard onClick={() =>
                     this.onRecipeSelect(recipe)}
-                    name={recipe.name}
-                    cuisine={recipe.cuisine}
-                    // instructions={recipe.instructions}
-                    picture={recipe.picture}
-                    main_ingredient={recipe.main_ingredient}
-                />
+                    recipe={recipe} />
             )
         })
         const { meals, isLoading } = this.state

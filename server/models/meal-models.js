@@ -3,6 +3,7 @@ const Schema = mongoose.Schema
 
 const Meal = new Schema(
     {
+    idMeal: {type: String},
     name: {type: String},
     // "sides": string,
     picture: {type: String},

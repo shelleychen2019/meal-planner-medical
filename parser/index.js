@@ -58,6 +58,7 @@ const run = async () => {
         // console.log(merged_meal_array)
         let schema_array = non_null_array.map(meal => {
             let obj = {}
+            obj.mealId = meal.idMeal;
             obj.name = meal.strMeal;
             obj.cuisine = meal.strCategory.toLowerCase();
             obj.main_ingredient = meal.strArea;

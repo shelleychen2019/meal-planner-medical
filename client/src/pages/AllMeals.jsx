@@ -6,6 +6,7 @@ import styled from 'styled-components'
 
 import 'react-table/react-table.css'
 import RecipeCard from './RecipeCard'
+import CardDetail from './CardDetail'
 
 const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
@@ -61,9 +62,13 @@ class AllMeals extends Component {
             // cuisine: [], //right side is in the router, left side is local var name
             columns: [],
             isLoading: false,
-            selectedRecipe: null
+            selectedRecipe: null,
+            favorites: []
         }
     }
+//add a function in this parent compoent that controls state, update menu with the clicked recipe object
+//make menu property in the state: [] of recipe objects
+//pass the function to the component
 
     //don't need cuisine in state
     //edge case for isLoading, setState is loading should be true and then false after fetch
@@ -84,19 +89,34 @@ class AllMeals extends Component {
         })
     }
 
+    // const [list, setList] = React.useState(initialList);
+
+    // function handleAdd() {
+    //     const newList = list.concat({ name });
+     
+    //     setList(newList);
+    //   }
+     
+    // onAdd(recipe){
+    //     this.setState({ favorites: favorites.push(recipe)});
+    // }
+    //menu component, menu array to get props
+
     onRecipeSelect(recipe) {
-        this.setState({ selectedRecipe: recipe });
+        this.setState({ selectedRecipe: recipe});
     }
     renderRecipe(recipe) {
         if (recipe != null) {
             return (
-                <RecipeCard
-                    name={recipe.name}
-                    picture={recipe.picture}
-                    cuisine={recipe.cuisine}
-                    video = {recipe.video}
-                    instructions={recipe.instructions}
-                    main_ingredient={recipe.main_ingredient}
+                // should this be a different component?
+                <CardDetail
+                recipe = {recipe}
+                    // name={recipe.name}
+                    // picture={recipe.picture}
+                    // cuisine={recipe.cuisine}
+                    // video={recipe.video}
+                    // instructions={recipe.instructions}
+                    // main_ingredient={recipe.main_ingredient}
                 />
             )
         }
@@ -106,19 +126,24 @@ class AllMeals extends Component {
             )
         }
     }
+
     render() {
         // const { meals, isLoading } = this.state
+
         const recipes = this.state.meals.map(recipe => {
             //easier to console.log
             //className applies css to JSX
             return (
-                <RecipeCard onClick={() =>
-                    this.onRecipeSelect(recipe)}
-                    name={recipe.name}
-                    cuisine={recipe.cuisine}
-                    // instructions={recipe.instructions}
-                    picture={recipe.picture}
-                    main_ingredient={recipe.main_ingredient}
+                <RecipeCard
+                    onClick={() =>
+                        this.onRecipeSelect(recipe)}
+                    recipe = {recipe}
+                    // onMenuClick = {()=>
+                    //     this.onAdd(recipe)}
+                    // name={recipe.name}
+                    // cuisine={recipe.cuisine}
+                    // picture={recipe.picture}
+                    // main_ingredient={recipe.main_ingredient}
                 />
             )
         })
@@ -131,6 +156,7 @@ class AllMeals extends Component {
         return (
 
             <div class="container">
+
                 <div className="row">
                     <div className="col-12 col-md-5 m-1">
                         {this.renderRecipe(this.state.selectedRecipe)}
@@ -138,7 +164,10 @@ class AllMeals extends Component {
                 </div>
 
                 <div className="row">
+                    {/* <RecipeCard meal ={this.state.meals} onClick={(recipe) => this.onRecipeSelect(recipe)} />
+                    <CardDetail dish={this.state.meals.filter((meal) => meal.id === this.state.selectedRecipe)[0]} /> */}
                     {recipes}
+
                 </div>
 
 
