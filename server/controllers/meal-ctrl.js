@@ -82,7 +82,7 @@ deleteMeal = async (req, res) => {
 			if (!meal) {
 					return res
 							.status(404)
-							.json({ success: false, error: `Meal not found` })
+							.json({ success: false, error: `Meal not found 1` })
 			}
 
 			return res.status(200).json({ success: true, data: meal })
@@ -98,7 +98,7 @@ getMealById = async (req, res) => {
 			if (!meal) {
 					return res
 							.status(404)
-							.json({ success: false, error: `Meal not found` })
+							.json({ success: false, error: `Meal not found 2` })
 			}
 			return res.status(200).json({ success: true, data: meal })
 	}).catch(err => console.log(err))
@@ -118,11 +118,46 @@ getMealsByDiet = async (req, res) => {
         if (!meals.length) {
             return res
                 .status(404)
+                .json({ success: false, error: `Meal not found 3` })
+        }
+        return res.status(200).json({ success: true, data: meals })
+    }).catch(err => console.log(err))
+}
+
+getMealsByFavorites = async (req, res) => {
+    await Meal.find({fav: true}, (err, meals) => {
+        console.log('err: ', err)
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+        console.log('from getMealsByFavorites on server', meals)
+        if (!meals.length) {
+            // return []
+            return res
+                .status(404)
                 .json({ success: false, error: `Meal not found` })
         }
         return res.status(200).json({ success: true, data: meals })
     }).catch(err => console.log(err))
 }
+
+
+// getMealsByFavorites = async (req, res) => {
+//     // console.log('jah'); //this shows up in the console
+//     // return res.status(200).json({success:'jah'}) //shows up in postman
+// 	await Meal.find({fav:true}, (err, meals) => {
+// 			if (err) {
+// 					return res.status(400).json({ success: false, error: err })
+// 			}
+// 			if (!meals.length) {
+// 					return res
+// 							.status(404)
+// 							.json({ success: false, error: `Meal not found 5` })
+// 			}
+// 			return res.status(200).json({ success: true, data: meals })
+// 	}).catch(err => console.log(err))
+// }
+
 
 getMeals = async (req, res) => {
     // console.log('jah'); //this shows up in the console
@@ -134,7 +169,7 @@ getMeals = async (req, res) => {
 			if (!meals.length) {
 					return res
 							.status(404)
-							.json({ success: false, error: `Meal not found` })
+							.json({ success: false, error: `Meal not found 5` })
 			}
 			return res.status(200).json({ success: true, data: meals })
 	}).catch(err => console.log(err))
@@ -146,5 +181,6 @@ module.exports = {
 	deleteMeal,
 	getMeals,
     getMealById,
-    getMealsByDiet
+    getMealsByDiet,
+    getMealsByFavorites
 }

@@ -8,7 +8,7 @@ class RecipeCard extends Component {
     // after changing the onClick property
 
     render() {
-        console.log(this.props)
+        // console.log('recipe card props', this.props)
         return (
             // if button is clicked show everything
             // if not then
@@ -29,7 +29,7 @@ class RecipeCard extends Component {
                             </ul>
                             {/* <a href="#" className="card-link">See More</a>
                     <a href="#" className="card-link">Ingredients</a> */}
-                            <a href="#" onClick = {this.props.recipe.onAdd} className="btn btn-primary">Add to Menu</a>
+                            <a href="#" onClick = {this.props.onAddtoMenu} className="btn btn-primary">Add to Menu</a>
                         </div>
                     </div>
                 </div>

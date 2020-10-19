@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import 'react-table/react-table.css'
 import RecipeCard from './RecipeCard'
 import CardDetail from './CardDetail'
+import Favorites from './Favorites'
 
 const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
@@ -58,17 +59,14 @@ class AllMeals extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            meals: [],
-            // cuisine: [], //right side is in the router, left side is local var name
+            meals: [], //right side is in the router, left side is local var name
             columns: [],
             isLoading: false,
             selectedRecipe: null,
             favorites: []
         }
     }
-//add a function in this parent compoent that controls state, update menu with the clicked recipe object
-//make menu property in the state: [] of recipe objects
-//pass the function to the component
+
 
     //don't need cuisine in state
     //edge case for isLoading, setState is loading should be true and then false after fetch
@@ -88,41 +86,36 @@ class AllMeals extends Component {
             // console.log(meals);
         })
     }
+    //onAdd sets state to a list of added recipes
 
-    // const [list, setList] = React.useState(initialList);
+    onAdd(recipe) {
+        console.log('favorites and selected recipe', this.state.favorites,
+            recipe);
+        this.setState(
+            state => {
+                const newFavorites = state.favorites.concat(recipe);
 
-    // function handleAdd() {
-    //     const newList = list.concat({ name });
-     
-    //     setList(newList);
-    //   }
-     
-    // onAdd(recipe){
-    //     this.setState({ favorites: favorites.push(recipe)});
-    // }
-    //menu component, menu array to get props
+                return {
+                    favorites: newFavorites
+                }
+            })
+    };
 
     onRecipeSelect(recipe) {
-        this.setState({ selectedRecipe: recipe});
+        this.setState({ selectedRecipe: recipe });
     }
     renderRecipe(recipe) {
         if (recipe != null) {
             return (
                 // should this be a different component?
                 <CardDetail
-                recipe = {recipe}
-                    // name={recipe.name}
-                    // picture={recipe.picture}
-                    // cuisine={recipe.cuisine}
-                    // video={recipe.video}
-                    // instructions={recipe.instructions}
-                    // main_ingredient={recipe.main_ingredient}
+                    recipe={recipe}
                 />
             )
         }
         else {
             return (
-                <div></div>
+                <div>Need to fix this</div>
             )
         }
     }
@@ -137,13 +130,9 @@ class AllMeals extends Component {
                 <RecipeCard
                     onClick={() =>
                         this.onRecipeSelect(recipe)}
-                    recipe = {recipe}
-                    // onMenuClick = {()=>
-                    //     this.onAdd(recipe)}
-                    // name={recipe.name}
-                    // cuisine={recipe.cuisine}
-                    // picture={recipe.picture}
-                    // main_ingredient={recipe.main_ingredient}
+                    recipe={recipe}
+                    onAddtoMenu={() =>
+                        this.onAdd(recipe)}
                 />
             )
         })
@@ -156,7 +145,6 @@ class AllMeals extends Component {
         return (
 
             <div class="container">
-
                 <div className="row">
                     <div className="col-12 col-md-5 m-1">
                         {this.renderRecipe(this.state.selectedRecipe)}
@@ -167,81 +155,8 @@ class AllMeals extends Component {
                     {/* <RecipeCard meal ={this.state.meals} onClick={(recipe) => this.onRecipeSelect(recipe)} />
                     <CardDetail dish={this.state.meals.filter((meal) => meal.id === this.state.selectedRecipe)[0]} /> */}
                     {recipes}
-
                 </div>
-
-
             </div>
-
-
-
-            // <React.Fragment>
-            // console.log('TCL: MealsList -> render -> meals', meals)
-
-            // const columns = [
-            // {
-            //     Header: 'ID',
-            //     accessor: '_id',
-            //     filterable: true,
-            // },
-            //     {
-            //         Header: 'Name',
-            //         accessor: 'name',
-            //         filterable: true,
-            //     },
-            //     {
-            //         Header: 'Instructions',
-            //         accessor: 'instructions',
-            //         filterable: true,
-            //         Cell: props => <span>{props.value.map(e => <span> {e} <br></br> </span>)}</span>,
-
-            //     },
-            //     {
-            //         Header: 'Diet',
-            //         accessor: 'cuisine',
-            //         // Cell: props => <span>{props.value.join(' / ')}</span>,
-            //         Cell: props => <span>{props.value}</span>
-            //     },
-            //     {
-            //         Header: '',
-            //         accessor: '',
-            //         Cell: function (props) {
-            //             return (
-            //                 <span>
-            //                     <DeleteMeal id={props.original._id} />
-            //                 </span>
-            //             )
-            //         },
-            //     },
-            //     {
-            //         Header: '',
-            //         accessor: '',
-            //         Cell: function (props) {
-            //             return (
-            //                 <span>
-            //                     <UpdateMeal id={props.original._id} />
-            //                 </span>
-            //             )
-            //         },
-            //     },
-            // ]
-
-            // </React.Fragment>
-
-            // <Wrapper>
-
-            //     {showTable && (
-
-            // <ReactTable
-            //     data={meals}
-            //     columns={columns}
-            //     loading={isLoading}
-            //     defaultPageSize={10}
-            //     showPageSizeOptions={true}
-            //     minRows={0}
-            // />
-            //     )}
-            // </Wrapper>
         )
     }
 }

@@ -5,7 +5,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { NavBar} from '../components';
-import { AllMeals, MealsList, MoviesInsert, MoviesUpdate } from '../pages'
+import { Favorites, AllMeals, MealsList, MoviesInsert, MoviesUpdate } from '../pages'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import { getAllMeals } from '../api';
@@ -17,7 +17,7 @@ function App() {
       <Switch>
         {/* Switch will render only 1 route, meals/list/:cuisine */}
         {/* <Route path="/" exact component={NavBar} /> */}
-        {/* <Route path="/meals/list" exact component={Favorites} /> */}
+        <Route path="/meals/list/favorites" exact component={Favorites} />
         <Route path="/meals/list" exact component={AllMeals} />
         <Route path="/meals/list/:cuisine" exact component={MealsList} />
         <Route path="/meals/create" exact component={MoviesInsert} />

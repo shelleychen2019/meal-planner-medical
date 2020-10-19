@@ -65,12 +65,14 @@ const run = async () => {
             obj.instructions = meal.strInstructions.replace(/\r\n/g, "<br />");
             obj.picture = meal.strMealThumb;
             obj.video = meal.strYoutube;
+            obj.fav = false;
             return obj
         }
         )
 
         console.log('convert recipe to my schema', schema_array)
         for (let i = 0; i < schema_array.length; i++){
+            debugger;
             const resp = await axios.post('http://localhost:3000/api/meal', schema_array[i]);
         }
     } catch (error) {

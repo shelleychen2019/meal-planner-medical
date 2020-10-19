@@ -60,7 +60,8 @@ class MealsList extends Component {
             meals: [],
             cuisine: this.props.match.params.cuisine, //right side is in the router, left side is local var name
             columns: [],
-            isLoading: false,
+            isLoading: false, 
+            selectedRecipe: null,
         }
     }
 
