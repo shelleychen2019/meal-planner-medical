@@ -77,6 +77,7 @@ class Favorites extends Component {
         })
     }
 
+    //don't need this because we aren't updating the parameter
     // componentDidUpdate = async (prevProps) => {
     //     await api.getMealsByFavorites()
     //         .then(meals => {

@@ -29,7 +29,7 @@ class RecipeCard extends Component {
                             </ul>
                             {/* <a href="#" className="card-link">See More</a>
                     <a href="#" className="card-link">Ingredients</a> */}
-                            <a href="#" onClick = {this.props.onAddtoMenu} className="btn btn-primary">Add to Menu</a>
+                            <a onClick = {this.props.onAddtoMenu} className="btn btn-primary">Add to Menu</a>
                         </div>
                     </div>
                 </div>

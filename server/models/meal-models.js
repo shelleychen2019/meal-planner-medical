@@ -1,3 +1,4 @@
+//file based node module
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
