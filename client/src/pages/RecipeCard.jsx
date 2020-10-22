@@ -24,7 +24,6 @@ class RecipeCard extends Component {
                             {/* <p className="card-text"> {this.props.recipe.instructions}  </p> */}
                             <ul className="list-group list-group-flush">
                                 <li className="list-group-item">Cuisine: {this.props.recipe.cuisine}</li>
-                                <li className="list-group-item">Difficulty</li>
                                 {/* <li className="list-group-item"><a href={t.url} target="_blank" rel="noopener noreferrer" className="card-link">Trail Information</a></li> */}
                             </ul>
                             {/* <a href="#" className="card-link">See More</a>
