@@ -64,17 +64,10 @@ class MealsList extends Component {
         }
     }
 
-
-
-    //create a helper function
-    //don't need cuisine in state
-    //edge case for isLoading, setState is loading should be true and then false after fetch
-    //if setState doesn't happen instantly, getMealsByDiet might return first before setState occurs, isLoading gets set to false
     componentDidMount = async () => {
         this.setState({ isLoading: true })
         const { cuisine } = this.state //extraction operator, extracts state fields
         //add an option of just get meals by diet, which is already connected through the api to the backend
-        // await api.getAllMeals().then(meals => {
         await api.getMealsByDiet(cuisine).then(meals => {
             this.setState({
                 meals: meals.data.data,
@@ -134,56 +127,7 @@ class MealsList extends Component {
             )
         })
         const { meals, isLoading } = this.state
-        console.log('TCL: MealsList -> render -> meals', meals)
-
-        const columns = [
-            // {
-            //     Header: 'ID',
-            //     accessor: '_id',
-            //     filterable: true,
-            // },
-            {
-                Header: 'Name',
-                accessor: 'name',
-                filterable: true,
-            },
-            {
-                Header: 'Instructions',
-                accessor: 'instructions',
-                filterable: true,
-                Cell: props => <span>{props.value.map(e => <span> {e} <br></br> </span>)}</span>,
-
-            },
-            {
-                Header: 'Diet',
-                accessor: 'cuisine',
-                // Cell: props => <span>{props.value.join(' / ')}</span>,
-                Cell: props => <span>{props.value}</span>
-            },
-            {
-                Header: '',
-                accessor: '',
-                Cell: function (props) {
-                    return (
-                        <span>
-                            <DeleteMeal id={props.original._id} />
-                        </span>
-                    )
-                },
-            },
-            {
-                Header: '',
-                accessor: '',
-                Cell: function (props) {
-                    return (
-                        <span>
-                            <UpdateMeal id={props.original._id} />
-                        </span>
-                    )
-                },
-            },
-        ]
-
+        
         let showTable = true
         if (!meals.length) {
             showTable = false

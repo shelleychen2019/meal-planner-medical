@@ -8,7 +8,7 @@ class RecipeCard extends Component {
     // after changing the onClick property
 
     render() {
-        console.log(this.props)
+        console.log('recipe card props:', this.props)
         return (
             // if button is clicked show everything
             // if not then
