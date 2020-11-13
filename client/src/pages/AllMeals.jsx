@@ -63,7 +63,6 @@ class AllMeals extends Component {
             columns: [],
             isLoading: false,
             selectedRecipe: null,
-            favorites: []
         }
     }
 
@@ -88,18 +87,16 @@ class AllMeals extends Component {
     }
     //onAdd sets state to a list of added recipes
 
-    onAdd(recipe) {
-        console.log('favorites and selected recipe', this.state.favorites,
-            recipe);
-        this.setState(
-            state => {
-                const newFavorites = state.favorites.concat(recipe);
-
-                return {
-                    favorites: newFavorites
-                }
-            })
-    };
+    onAdd = async (recipe) => {
+        const payload = { fav: true }
+        console.log(recipe);
+        await api.updateFavorite(recipe._id, payload).then(res => {
+            window.alert(`Meal added to favorites`)
+            // this.setState({
+                
+            // })
+        })
+    }
 
     onRecipeSelect(recipe) {
         this.setState({ selectedRecipe: recipe });

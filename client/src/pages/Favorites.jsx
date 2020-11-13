@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import ReactTable from 'react-table'
 import api from '../api'
 import RecipeCard from './RecipeCard'
+import CardDetail from './CardDetail'
+
 import styled from 'styled-components'
 
 import 'react-table/react-table.css'
@@ -77,6 +79,7 @@ class Favorites extends Component {
         })
     }
 
+    //don't need this because we aren't updating the parameter
     // componentDidUpdate = async (prevProps) => {
     //     await api.getMealsByFavorites()
     //         .then(meals => {
@@ -86,6 +89,16 @@ class Favorites extends Component {
     //             })
     //         })
     // }
+   
+    onRemoveFav = async (recipe) => {
+        const payload = { fav: false }
+        console.log(recipe);
+        await api.updateFavorite(recipe._id, payload).then(res => {
+            // window.alert(`Meal removed to favorites`);
+            console.log('Meal removed from favorites')
+            this.componentDidMount();
+        })
+    }
 
     onRecipeSelect(recipe) {
         this.setState({ selectedRecipe: recipe });
@@ -93,13 +106,8 @@ class Favorites extends Component {
     renderRecipe(recipe) {
         if (recipe != null) {
             return (
-                <RecipeCard
-                    name={recipe.name}
-                    picture={recipe.picture}
-                    cuisine={recipe.cuisine}
-                    video={recipe.video}
-                    instructions={recipe.instructions}
-                    main_ingredient={recipe.main_ingredient}
+                <CardDetail
+                   recipe = {recipe}
                 />
             )
         }
@@ -117,64 +125,14 @@ class Favorites extends Component {
             return (
                 <RecipeCard onClick={() =>
                     this.onRecipeSelect(recipe)}
-                    recipe={recipe} />
+                    recipe={recipe}
+                    isOnFavPage = {true}
+                    onRemoveFav={() =>
+                        this.onRemoveFav(recipe)} />
             )
         })
         const { meals, isLoading } = this.state
-
-        const columns = [
-            // {
-            //     Header: 'ID',
-            //     accessor: '_id',
-            //     filterable: true,
-            // },
-            {
-                Header: 'Name',
-                accessor: 'name',
-                filterable: true,
-            },
-            {
-                Header: 'Instructions',
-                accessor: 'instructions',
-                filterable: true,
-                Cell: props => <span>{props.value.map(e => <span> {e} <br></br> </span>)}</span>,
-
-            },
-            {
-                Header: 'Diet',
-                accessor: 'cuisine',
-                // Cell: props => <span>{props.value.join(' / ')}</span>,
-                Cell: props => <span>{props.value}</span>
-            },
-            {
-                Header: '',
-                accessor: '',
-                Cell: function (props) {
-                    return (
-                        <span>
-                            <DeleteMeal id={props.original._id} />
-                        </span>
-                    )
-                },
-            },
-            {
-                Header: '',
-                accessor: '',
-                Cell: function (props) {
-                    return (
-                        <span>
-                            <UpdateMeal id={props.original._id} />
-                        </span>
-                    )
-                },
-            },
-        ]
-
-        let showTable = true
-        if (!meals.length) {
-            showTable = false
-        }
-
+        
         return (
             <div class="container">
                 <div className="row">

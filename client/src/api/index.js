@@ -9,9 +9,9 @@ export const getAllMeals = () => api2.get(`/meals`)
 export const updateMealById = (id, payload) => api2.put(`/meal/${id}`, payload)
 export const deleteMealById = id => api2.delete(`/meal/${id}`)
 export const getMealById = id => api2.get(`/meal/${id}`)
-export const getMealsByDiet = cuisine => api2.get(`/mealsearch/${cuisine}`)
+export const getMealsByDiet = cuisine => api2.get(`/meals/${cuisine}`)
 export const getMealsByFavorites = () => api2.get(`/favorites`)
-
+export const updateFavorite = (id, payload) => api2.put(`/updatefav/${id}`, payload)
 const apis = {
     insertMeal,
     getAllMeals,
@@ -19,7 +19,8 @@ const apis = {
     deleteMealById,
     getMealById,
     getMealsByDiet,
-    getMealsByFavorites
+    getMealsByFavorites,
+    updateFavorite
 }
 
 export default apis

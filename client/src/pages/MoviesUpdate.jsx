@@ -65,6 +65,7 @@ class MoviesUpdate extends Component {
         this.setState({ time })
     }
 
+    
     handleUpdateMovie = async () => {
         const { id, name, rating, time } = this.state //extraction operator, extracts state fields
         const arrayTime = time.split('/')

@@ -34,6 +34,7 @@ createMeal = (req, res) => {
         })
 }
 
+
 	updateMeal = async (req, res) => { //this is express syntax
     const body = req.body //this req.body is mongoose syntax
 
@@ -131,17 +132,53 @@ getMealsByFavorites = async (req, res) => {
             return res.status(400).json({ success: false, error: err })
         }
         console.log('from getMealsByFavorites on server', meals)
-        if (!meals.length) {
-            // return []
-            return res
-                .status(404)
-                .json({ success: false, error: `Meal not found` })
-        }
+        // if (!meals.length) {
+        //     // return []
+        //     return res
+        //         .status(404)
+        //         .json({ success: false, error: `Meal not found` })
+        // }
         return res.status(200).json({ success: true, data: meals })
     }).catch(err => console.log(err))
 }
 
+updateFavorite = async (req, res) => { //this is express syntax
+    const body = req.body //this req.body is mongoose syntax
 
+    if (!body) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must provide a body to update',
+        })
+    }
+
+    Meal.findOne({ _id: req.params.id }, (err, meal) => {
+        if (err) {
+            return res.status(404).json({
+                err,
+                message: 'Not found!',
+            })
+        }
+        meal.fav = body.fav
+
+        meal
+            .save()
+            .then(() => {
+                return res.status(200).json({
+                    success: true,
+                    id: meal._id,
+                    message: 'Updated!',
+                })
+            })
+            .catch(error => {
+                return res.status(404).json({
+                    error,
+                    message: 'Not updated!',
+                })
+            })
+    })
+}
+          
 // getMealsByFavorites = async (req, res) => {
 //     // console.log('jah'); //this shows up in the console
 //     // return res.status(200).json({success:'jah'}) //shows up in postman
@@ -182,5 +219,6 @@ module.exports = {
 	getMeals,
     getMealById,
     getMealsByDiet,
-    getMealsByFavorites
+    getMealsByFavorites,
+    updateFavorite
 }
